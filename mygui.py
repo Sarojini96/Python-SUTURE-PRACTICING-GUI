@@ -3,11 +3,22 @@ import tkinter as tk
 #import tkinter.messagebox
 
 # Create the main window...
-
 root =tk.Tk()
 root.title("SUTURE PRACTICING SITE")
 root.geometry("450x300")
 root.configure(background='black')
+
+#create another window for threshold bar...
+root1 =tk.Tk()
+root1.config(bg='cyan')
+root1.title("threshold")
+
+#create label for root1 window...
+tk.Label(root1, 
+		 text="THRESHOLD SETTING",
+		 fg = "black",
+		 bg = "cyan",
+		 font = "Helvetica 16 bold italic").pack()
 
 #Create menu...
 menu=tk.Menu(root)
@@ -51,4 +62,34 @@ quitbutton.pack(side=tk.RIGHT)
 # create a canvas
 #frame =tk.Frame(root, width=440, height=260,bg="grey")
 #frame.pack(pady=10)
+
+
+
+
+#create entry feilds for threshold setting...
+fields = 'MIN','MAX'
+def fetchdata(entries):
+   for entry in entries:
+      field = entry[0]
+      text  = entry[1].get()
+      print('%s: "%s"' % (field, text))
+def makeform(root1, fields):
+   entries = []
+   for field in fields:
+      row = tk.Frame(root1)
+      lab = tk.Label(row, width=15, text=field, anchor='w')
+      ent = tk.Entry(row)
+      row.pack(side=tk.TOP,fill='both', padx=5, pady=5)
+      lab.pack(side=tk.LEFT)
+      ent.pack(side=tk.RIGHT,expand='YES',fill='both')
+      entries.append((field, ent))
+   return entries
+
+ents = makeform(root1, fields)
+root1.bind('<Return>', (lambda event, e=ents: fetch(e)))   
+b1 = tk.Button(root1, text='Show',command=(lambda e=ents: fetchdata(e)))
+b1.pack(side=tk.LEFT, padx=60, pady=5)
+b2 = tk.Button(root1, text='close', command=root1.destroy)
+b2.pack(side=tk.LEFT, padx=5, pady=5)
+
 
