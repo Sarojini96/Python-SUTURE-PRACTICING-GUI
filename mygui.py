@@ -1,12 +1,12 @@
 import tkinter as tk
 #import RPi.GPIO as GPIO
-import tkinter.messagebox
+#import tkinter.messagebox
 
 # Create the main window...
 
 root =tk.Tk()
 root.title("SUTURE PRACTICING SITE")
-root.geometry("500x300")
+root.geometry("450x300")
 root.configure(background='black')
 
 #Create menu...
@@ -47,3 +47,7 @@ theButton2 = tk.Button(bottomFrame, text="ALARM OFF", font="verdana 10 bold",fg=
 theButton2.pack(side=tk.LEFT)
 quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
 quitbutton.pack(side=tk.RIGHT)
+
+# create a canvas
+frame =tk.Frame(root, width=440, height=260,bg="grey")
+frame.pack(pady=10)
