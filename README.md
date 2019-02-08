@@ -1,4 +1,4 @@
-# -Python-GUI
+# Python-GUI
 
 # REFERENCE:
 for menu and submenu
