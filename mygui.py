@@ -49,5 +49,6 @@ quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark gre
 quitbutton.pack(side=tk.RIGHT)
 
 # create a canvas
-frame =tk.Frame(root, width=440, height=260,bg="grey")
-frame.pack(pady=10)
+#frame =tk.Frame(root, width=440, height=260,bg="grey")
+#frame.pack(pady=10)
+
