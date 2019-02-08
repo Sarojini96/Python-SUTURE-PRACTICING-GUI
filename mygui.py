@@ -12,7 +12,7 @@ root.configure(background='black')
 #Create menu...
 menu=tk.Menu(root)
 root.config(menu=menu)
-
+menu.config(bg='cyan')
 fmenu=tk.Menu(menu)
 menu.add_cascade(label="START",font=("verdana 10 bold",12),menu=fmenu)
 
@@ -47,5 +47,3 @@ theButton2 = tk.Button(bottomFrame, text="ALARM OFF", font="verdana 10 bold",fg=
 theButton2.pack(side=tk.LEFT)
 quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
 quitbutton.pack(side=tk.RIGHT)
-
-
