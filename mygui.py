@@ -1,7 +1,9 @@
 import tkinter as tk
 #import RPi.GPIO as GPIO
 #import tkinter.messagebox
-
+import pygame
+pygame.init()
+alarm=pygame.mixer.Sound("alarm.wav")
 # Create the main window...
 root =tk.Tk()
 root.title("SUTURE PRACTICING SITE")
@@ -43,7 +45,12 @@ submenu=tk.Menu(fmenu)#create a  submenu...
 submenu.add_command(label="THRESHOLD")
 fmenu4.add_cascade(label="SKIN",menu=submenu)
 fmenu4.add_separator()
-fmenu4.add_command(label="SOFT TISSUE")
+#fmenu4.add_command(label="SOFT TISSUE")
+submenu1=tk.Menu(fmenu)#create a  submenu...
+submenu1.add_command(label="THRESHOLD")
+fmenu4.add_cascade(label="SOFT TISSUE",menu=submenu1)
+fmenu4.add_separator()
+#fmenu4.add_command(label="SOFT TISSUE")
 
 #create a container...
 topframe=tk.Frame(root)
@@ -52,10 +59,10 @@ bottomFrame =tk.Frame(root, bg="black")
 bottomFrame.pack(side=tk.BOTTOM)
 
 #create buttons...
-theButton1 = tk.Button(bottomFrame, text="ALARM ON  ", fg="red",font="verdana 10 bold", bg="black")
-theButton1.pack(side=tk.LEFT)
-theButton2 = tk.Button(bottomFrame, text="ALARM OFF", font="verdana 10 bold",fg="red", bg="black")
-theButton2.pack(side=tk.LEFT)
+#theButton1 = tk.Button(bottomFrame, text="ALARM ON  ", fg="red",font="verdana 10 bold", bg="black")
+#theButton1.pack(side=tk.LEFT)
+#theButton2 = tk.Button(bottomFrame, text="ALARM OFF", font="verdana 10 bold",fg="red", bg="black")
+#theButton2.pack(side=tk.LEFT)
 quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
 quitbutton.pack(side=tk.RIGHT)
 
@@ -73,6 +80,8 @@ def fetchdata(entries):
       field = entry[0]
       text  = entry[1].get()
       print('%s: "%s"' % (field, text))
+
+          
 def makeform(root1, fields):
    entries = []
    for field in fields:
@@ -84,6 +93,7 @@ def makeform(root1, fields):
       ent.pack(side=tk.RIGHT,expand='YES',fill='both')
       entries.append((field, ent))
    return entries
+   
 
 ents = makeform(root1, fields)
 root1.bind('<Return>', (lambda event, e=ents: fetch(e)))   
