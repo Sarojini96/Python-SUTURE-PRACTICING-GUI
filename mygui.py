@@ -99,6 +99,34 @@ quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark gre
 quitbutton.pack(side=tk.RIGHT)
 
 # create a canvas
-#frame =tk.Frame(root, width=440, height=260,bg="grey")
-#frame.pack(pady=10)
+frame1 =tk.Frame(root,bg="black")
+frame1.pack(fill='both')
+#frame.config(bg="black")
+canva1=tk.Canvas(frame1,bg='black')
+#canva2=tk.Canvas(frame1,bg='black')
+canva1.create_line(15,60,500,50,fill='cyan')
+canva1.create_line(2, 50, 500, 25,fill='white')
+canva1.pack()
+#canva2.pack()
+'''class Example(Frame):
+  
+    def __init__(self):
+        super().__init__()   
+         
+        self.initUI()
+        
+        
+    def initUI(self):
+      
+#        self.master.title("Lines")        
+        self.pack(fill=BOTH, expand=1)
+
+        canvas = Canvas(self)
+        canvas.create_line(15, 25, 200, 25)
+#        canvas.create_line(300, 35, 300, 200, dash=(4, 2))
+#        canvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
+        
+        canvas.pack(fill=BOTH, expand=1)'''
+
+
 
