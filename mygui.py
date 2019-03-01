@@ -1,17 +1,20 @@
 import tkinter as tk
 #import RPi.GPIO as GPIO
 #import tkinter.messagebox
+import datetime
 import pygame
 pygame.init()
 alarm=pygame.mixer.Sound("alarm.wav")
 # Create the main window...
 root =tk.Tk()
 root.title("SUTURE PRACTICING SITE")
-root.geometry("450x300")
+root.geometry("333x170")
 root.configure(background='black')
-
+#global root1
+#global root
 #create another window for threshold bar...
 def secscr():
+   
    root1 =tk.Tk()
    root1.config(bg='cyan')
    root1.title("threshold")
@@ -52,7 +55,11 @@ def secscr():
    b1.pack(side=tk.LEFT, padx=60, pady=5)
    b2 = tk.Button(root1, text='close', command=root1.destroy)
    b2.pack(side=tk.LEFT, padx=5, pady=5)
-
+   return("form opened")
+#create doc to record the datas
+#def record():
+file = open("records.txt", "a")
+file.writelines(str(datetime.datetime.now()) + "sensor data")
 
 #Create menu...
 menu=tk.Menu(root)
@@ -100,33 +107,16 @@ quitbutton.pack(side=tk.RIGHT)
 
 # create a canvas
 frame1 =tk.Frame(root,bg="black")
-frame1.pack(fill='both')
+frame1.pack(pady=5)
 #frame.config(bg="black")
 canva1=tk.Canvas(frame1,bg='black')
-#canva2=tk.Canvas(frame1,bg='black')
-canva1.create_line(15,60,500,50,fill='cyan')
-canva1.create_line(2, 50, 500, 25,fill='white')
+canva1=tk.Canvas(frame1,bg='black')
+
+canva1.create_line(2,55,500,50,fill='green',width=2)#sensor1
+canva1.create_line(2, 115, 500, 111,fill='green',width=2)#sensor2
+canva1.create_line(2,65,400,65,fill='white',width=1)#seperator
 canva1.pack()
-#canva2.pack()
-'''class Example(Frame):
-  
-    def __init__(self):
-        super().__init__()   
-         
-        self.initUI()
-        
-        
-    def initUI(self):
-      
-#        self.master.title("Lines")        
-        self.pack(fill=BOTH, expand=1)
-
-        canvas = Canvas(self)
-        canvas.create_line(15, 25, 200, 25)
-#        canvas.create_line(300, 35, 300, 200, dash=(4, 2))
-#        canvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
-        
-        canvas.pack(fill=BOTH, expand=1)'''
-
-
+label1=tk.Label(root,text="Force :",font="verdana 10 bold")
+label1.place(x=50, y=-20)
+label1.pack(side=tk.TOP)
 
