@@ -3,6 +3,8 @@
   
 # INSTALLATION
    pip install tkinter
+   
+   pip install pygame
 
 # REFERENCE:
 for menu and submenu
