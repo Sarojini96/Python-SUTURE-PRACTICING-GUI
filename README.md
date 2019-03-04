@@ -12,3 +12,5 @@ https://www.python-course.eu/tkinter_menus.php
 
 
 http://zetcode.com/gui/tkinter/menustoolbars/
+
+https://stackoverflow.com/questions/31440167/placing-plot-on-tkinter-main-window-in-python
