@@ -28,7 +28,7 @@ def secscr():
 
 
    #create entry feilds for threshold setting...
-   fields = 'MIN','MAX'
+   fields = 'MIN1','MAX1','MIN2','MAX2'
    def fetchdata(entries):
       for entry in entries:
          field = entry[0]
