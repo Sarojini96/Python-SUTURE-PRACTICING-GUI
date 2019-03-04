@@ -60,63 +60,75 @@ def secscr():
 #def record():
 file = open("records.txt", "a")
 file.writelines(str(datetime.datetime.now()) + "sensor data")
+class mclass:
+    frame1 =tk.Frame(root,bg="black")
+    frame1.pack(pady=5)
+        #frame.config(bg="black")
+    canva1=tk.Canvas(frame1,bg='black')
+    canva1=tk.Canvas(frame1,bg='black')
+    def __init__(self,  root):
+        #Create menu...
+        
+        menu=tk.Menu(root)
+        root.config(menu=menu)
+        menu.config(bg='cyan')
+        fmenu=tk.Menu(menu)
+        menu.add_cascade(label="START",font=("verdana 10 bold",12),command=self.plot)
 
-#Create menu...
-menu=tk.Menu(root)
-root.config(menu=menu)
-menu.config(bg='cyan')
-fmenu=tk.Menu(menu)
-menu.add_cascade(label="START",font=("verdana 10 bold",12),menu=fmenu)
+        fmenu1=tk.Menu(menu)
+        menu.add_cascade(label="STOP",font=("verdana 10 bold",12),command=self.clear_text)
 
-fmenu1=tk.Menu(menu)
-menu.add_cascade(label="STOP",font=("verdana 10 bold",12),menu=fmenu1)
+        fmenu2=tk.Menu(menu)
+        menu.add_cascade(label="RECORD",font=("verdana 10 bold",12))
 
-fmenu2=tk.Menu(menu)
-menu.add_cascade(label="RECORD",font=("verdana 10 bold",12),menu=fmenu2)
+        fmenu3=tk.Menu(menu)
+        menu.add_cascade(label="PAUSE",font=("verdana 10 bold",12))
 
-fmenu3=tk.Menu(menu)
-menu.add_cascade(label="PAUSE",font=("verdana 10 bold",12),menu=fmenu3)
+        fmenu4=tk.Menu(menu)
+        menu.add_cascade(label="SAREA",font=("verdana 10 bold",12),menu=fmenu4)
 
-fmenu4=tk.Menu(menu)
-menu.add_cascade(label="SAREA",font=("verdana 10 bold",12),menu=fmenu4)
+        submenu=tk.Menu(fmenu)#create a  submenu...
+        submenu.add_cascade(label="THRESHOLD",command=secscr)
+        fmenu4.add_cascade(label="SKIN",menu=submenu)
+        fmenu4.add_separator()
+        #fmenu4.add_command(label="SOFT TISSUE")
+        submenu1=tk.Menu(fmenu)#create a  submenu...
+        submenu1.add_cascade(label="THRESHOLD",command=secscr)
+        fmenu4.add_cascade(label="SOFT TISSUE",menu=submenu1)
+        fmenu4.add_separator()
+        #fmenu4.add_command(label="SOFT TISSUE")
 
-submenu=tk.Menu(fmenu)#create a  submenu...
-submenu.add_cascade(label="THRESHOLD",command=secscr)
-fmenu4.add_cascade(label="SKIN",menu=submenu)
-fmenu4.add_separator()
-#fmenu4.add_command(label="SOFT TISSUE")
-submenu1=tk.Menu(fmenu)#create a  submenu...
-submenu1.add_cascade(label="THRESHOLD",command=secscr)
-fmenu4.add_cascade(label="SOFT TISSUE",menu=submenu1)
-fmenu4.add_separator()
-#fmenu4.add_command(label="SOFT TISSUE")
+        #create a container...
+        topframe=tk.Frame(root)
+        topframe.pack()
+        bottomFrame =tk.Frame(root, bg="black")
+        bottomFrame.pack(side=tk.BOTTOM)
 
-#create a container...
-topframe=tk.Frame(root)
-topframe.pack()
-bottomFrame =tk.Frame(root, bg="black")
-bottomFrame.pack(side=tk.BOTTOM)
-
-#create buttons...
-#theButton1 = tk.Button(bottomFrame, text="ALARM ON  ", fg="red",font="verdana 10 bold", bg="black")
-#theButton1.pack(side=tk.LEFT)
-#theButton2 = tk.Button(bottomFrame, text="ALARM OFF", font="verdana 10 bold",fg="red", bg="black")
-#theButton2.pack(side=tk.LEFT)
-quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
-quitbutton.pack(side=tk.RIGHT)
-
-# create a canvas
-frame1 =tk.Frame(root,bg="black")
-frame1.pack(pady=5)
-#frame.config(bg="black")
-canva1=tk.Canvas(frame1,bg='black')
-canva1=tk.Canvas(frame1,bg='black')
-
-canva1.create_line(2,55,500,50,fill='green',width=2)#sensor1
-canva1.create_line(2, 115, 500, 111,fill='green',width=2)#sensor2
-canva1.create_line(2,65,400,65,fill='white',width=1)#seperator
-canva1.pack()
-label1=tk.Label(root,text="Force :",font="verdana 10 bold")
-label1.place(x=50, y=-20)
+        quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
+        quitbutton.pack(side=tk.RIGHT)
+    def plot(self):
+        
+        # create a canvas for graph
+        frame1 =tk.Frame(root,bg="black")
+        frame1.pack(pady=5)
+        #frame.config(bg="black")
+        canva1=tk.Canvas(frame1,bg='black')
+        canva1=tk.Canvas(frame1,bg='black')
+#    def plot(self):
+        canva1.create_line(2,55,500,50,fill='green',width=2)#sensor1
+        canva1.create_line(2, 115, 500, 111,fill='green',width=2)#sensor2
+        canva1.create_line(2,65,400,65,fill='white',width=1)#seperator dont change any values here
+        canva1.pack()
+        canva2=tk.Canvas(frame1)
+        canva2.pack()
+    def clear_text(self):
+        self.canva1.delete()
+'''label1=tk.Label(canva2,text="Force :",font="verdana 10 bold")
+#label1.place(x=-100, y=20)
 label1.pack(side=tk.TOP)
-
+label1.pack()
+label2=tk.Label(canva1,text="Force :",font="verdana 10 bold")
+label2.place(x=-100, y=-20)
+label2.pack(side=tk.BOTTOM)'''
+start= mclass (root)
+root.mainloop()
