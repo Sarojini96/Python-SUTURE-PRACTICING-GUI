@@ -1,7 +1,9 @@
 import tkinter as tk
+import matplotlib.pyplot as plt
 #import RPi.GPIO as GPIO
 #import tkinter.messagebox
 import datetime
+import serial
 import pygame
 pygame.init()
 alarm=pygame.mixer.Sound("alarm.wav")
@@ -10,9 +12,8 @@ root =tk.Tk()
 root.title("SUTURE PRACTICING SITE")
 root.geometry("333x170")
 root.configure(background='black')
-#global root1
-#global root
-#create another window for threshold bar...
+
+
 def secscr():
    
    root1 =tk.Tk()
@@ -56,11 +57,12 @@ def secscr():
    b2 = tk.Button(root1, text='close', command=root1.destroy)
    b2.pack(side=tk.LEFT, padx=5, pady=5)
    return("form opened")
-#create doc to record the datas
-#def record():
-file = open("records.txt", "a")
-file.writelines(str(datetime.datetime.now()) + "sensor data")
+
 class mclass:
+    
+   #create doc to record the datas
+   #def record():
+    
     frame1 =tk.Frame(root,bg="black")
     frame1.pack(pady=5)
         #frame.config(bg="black")
@@ -79,7 +81,7 @@ class mclass:
         menu.add_cascade(label="STOP",font=("verdana 10 bold",12),command=self.clear_text)
 
         fmenu2=tk.Menu(menu)
-        menu.add_cascade(label="RECORD",font=("verdana 10 bold",12))
+        menu.add_cascade(label="RECORD",font=("verdana 10 bold",12),command=self.ard)
 
         fmenu3=tk.Menu(menu)
         menu.add_cascade(label="PAUSE",font=("verdana 10 bold",12))
@@ -106,6 +108,30 @@ class mclass:
 
         quitbutton=tk.Button(bottomFrame,text='Quit',font="verdana 10 bold",fg="dark green",command=root.destroy)
         quitbutton.pack(side=tk.RIGHT)
+    def ard(self):
+      connected = False
+
+#finds COM port that the Arduino is on (assumes only one Arduino is connected)
+
+
+      ser = serial.Serial('com12', 9600) #sets up serial connection (make sure baud rate is correct - matches Arduino)
+
+
+      while not connected:
+        serin = ser.read()
+        connected = True
+
+      length = 500                 #determines length of data taking session (in data points)
+ #   x = [0]*length               #create empty variable of length of test
+  #  y = [0]*length
+  #  z = [0]*length
+
+      for i in range(length):     #while you are taking data
+         data = ser.readline()    #reads until it gets a carriage return. MAKE SURE THERE IS A CARRIAGE RETURN OR IT READS FOREVER
+ #      sep = data.split()      #splits string into a list at the tabs
+         print (data)
+         file = open("records.txt", "a")
+         file.writelines("sensor data"+ str(data))
     def plot(self):
         
         # create a canvas for graph
@@ -115,6 +141,8 @@ class mclass:
         canva1=tk.Canvas(frame1,bg='black')
         canva1=tk.Canvas(frame1,bg='black')
 #    def plot(self):
+        canva1.create_line(sep,fill='green',width=2)#sensor1
+
         canva1.create_line(2,55,500,50,fill='green',width=2)#sensor1
         canva1.create_line(2, 115, 500, 111,fill='green',width=2)#sensor2
         canva1.create_line(2,65,400,65,fill='white',width=1)#seperator dont change any values here
