@@ -5,6 +5,8 @@
    pip install tkinter
    
    pip install pygame
+   
+   pip install pyserial
 
 # REFERENCE:
 for menu and submenu
