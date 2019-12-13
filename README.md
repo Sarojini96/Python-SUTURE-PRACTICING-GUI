@@ -1,4 +1,4 @@
-[IMG_20190226_151749747.jpg]
+![img](IMG_20190226_151749747.jpg)
 
 # TKINTER - PYTHON
   The tkinter module's purpose is to generate GUIs. Python is not very popularly used for this purpose, but it is more than capable of doing it.
